@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Flow digital interactivo de Raza.do: inversión, etapas, canales, formatos y KPI.">
+  <title>Raza.do | Flow digital interactivo</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#flow">Saltar al flow</a>
+
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="Volver al centro de documentos de Raza.do">
+      <span class="brand-mark">R</span>
+      <span>RAZA.DO</span>
+    </a>
+    <nav aria-label="Navegación principal">
+      <a href="index.html">Documentos</a>
+      <a href="#estrategia">Estrategia</a>
+      <a href="#distribucion">Distribución</a>
+      <a href="#inversion">Inversión</a>
+      <a href="#canales">Canales</a>
+    </nav>
+    <span class="header-context">RD · 18+</span>
+  </header>
+
+  <main id="top">
+    <section class="hero section-dark" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow"><span>FLOW DIGITAL</span><span>2026—2027</span></p>
+        <h1 id="hero-title">Hacer ruido.<br><em>Después, convertir.</em></h1>
+        <p class="hero-lead">Una marca desconocida entra con fuerza y convierte ese alcance en primeros depósitos de forma progresiva.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#flow">Explorar el flow <span aria-hidden="true">↘</span></a>
+          <a class="button button-ghost" href="#canales">Ver canales</a>
+        </div>
+        <dl class="hero-stats" aria-label="Resumen de inversión">
+          <div><dt>Inversión neta</dt><dd>US$800K</dd></div>
+          <div><dt>Lanzamiento</dt><dd>63,25%</dd></div>
+          <div><dt>FTD base</dt><dd>4.021</dd></div>
+        </dl>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="hero-image-shell">
+          <img src="assets/launch-energy.jpg" alt="">
+          <div class="toggle-motif"><span></span></div>
+          <p>LA PASIÓN<br>SE PRENDE</p>
+        </div>
+        <div class="orbit orbit-one"></div>
+        <div class="orbit orbit-two"></div>
+      </div>
+    </section>
+
+    <section class="strategy section-light" id="estrategia" aria-labelledby="strategy-title">
+      <div class="section-heading">
+        <p class="eyebrow eyebrow-dark">JOURNEY DE MEDIOS <span>↗</span></p>
+        <h2 id="strategy-title">Cada etapa tiene<br>un trabajo distinto.</h2>
+        <p>La pauta no fuerza el mismo KPI en todos los medios: alcance donde toca alcance, consideración donde toca explicar y FTD donde sí podemos optimizar.</p>
+      </div>
+      <div class="journey" id="journey" aria-label="Etapas estratégicas"></div>
+    </section>
+
+    <section class="dashboard section-dark" id="flow" aria-labelledby="flow-title">
+      <div class="section-heading section-heading-wide">
+        <div>
+          <p class="eyebrow">FLOW INTERACTIVO <span>↗</span></p>
+          <h2 id="flow-title">Lee el plan como<br>necesites.</h2>
+        </div>
+        <p>Filtra por período, etapa, objetivo o vertical. Todas las cifras se recalculan sobre la selección activa.</p>
+      </div>
+
+      <form class="filters" id="filters" aria-label="Filtros del flow">
+        <label>Mes
+          <select id="monthFilter">
+            <option value="all">Todos los meses</option>
+          </select>
+        </label>
+        <label>Etapa
+          <select id="stageFilter">
+            <option value="all">Todas las etapas</option>
+            <option value="Lanzamiento">Lanzamiento</option>
+            <option value="Mantenimiento">Mantenimiento</option>
+          </select>
+        </label>
+        <label>Objetivo
+          <select id="objectiveFilter">
+            <option value="all">Todos los objetivos</option>
+            <option value="Awareness">Awareness</option>
+            <option value="Consideración">Consideración</option>
+            <option value="Performance">Performance / FTD</option>
+          </select>
+        </label>
+        <label>Vertical
+          <select id="verticalFilter">
+            <option value="all">Todas las verticales</option>
+            <option value="Marca">Marca</option>
+            <option value="Deportivas">Deportivas</option>
+            <option value="Casino">Casino</option>
+            <option value="Lotería">Lotería</option>
+            <option value="Virtuales">Virtuales</option>
+          </select>
+        </label>
+        <label class="search-label">Buscar canal
+          <input id="searchFilter" type="search" placeholder="Meta, DOOH, Search…" autocomplete="off">
+        </label>
+        <button class="reset-button" id="resetFilters" type="button">Restablecer</button>
+      </form>
+
+      <div class="active-filter-row">
+        <p id="selectionLabel" aria-live="polite">Plan completo · 6 meses · 12 canales</p>
+        <span class="live-dot">Datos recalculados</span>
+      </div>
+
+      <div class="metric-grid" id="metricGrid" aria-live="polite"></div>
+
+      <section class="distribution-block" id="distribucion" aria-labelledby="distribution-title">
+        <div class="dashboard-subheading">
+          <div>
+            <p class="eyebrow">DISTRIBUCIÓN DINÁMICA <span>↗</span></p>
+            <h2 id="distribution-title">Dónde está el peso.<br><em>Cómo leerlo.</em></h2>
+          </div>
+          <p>Los gráficos responden a los filtros activos. Haz clic en un objetivo o un canal para profundizar esa lectura.</p>
+        </div>
+
+        <div class="distribution-grid">
+          <article class="insight-panel objective-panel">
+            <div class="insight-panel-heading">
+              <div><span>Mix estratégico</span><h3>Inversión por objetivo</h3></div>
+              <span class="chart-hint">Clic para filtrar</span>
+            </div>
+            <div class="objective-chart-layout">
+              <div class="objective-donut" id="objectiveDonut" role="img" aria-label="Distribución de inversión por objetivo"></div>
+              <div class="objective-legend" id="objectiveLegend"></div>
+            </div>
+          </article>
+
+          <article class="insight-panel ranking-panel">
+            <div class="insight-panel-heading">
+              <div><span>Concentración</span><h3>Ranking por canal</h3></div>
+              <span class="chart-hint" id="rankingSummary">Top 6</span>
+            </div>
+            <div class="ranking-list" id="channelRanking" aria-live="polite"></div>
+          </article>
+        </div>
+
+        <div class="flow-usage" aria-labelledby="usage-title">
+          <div class="flow-usage-heading">
+            <p class="eyebrow"><span>GUÍA DE USO</span></p>
+            <h3 id="usage-title">Del dato a<br>la decisión.</h3>
+          </div>
+          <ol class="flow-usage-steps">
+            <li><span>01</span><strong>Filtra</strong><p>Elige mes, etapa, objetivo o vertical.</p></li>
+            <li><span>02</span><strong>Compara</strong><p>Lee inversión, mix y concentración por canal.</p></li>
+            <li><span>03</span><strong>Profundiza</strong><p>Abre cada medio para revisar KPI y formatos.</p></li>
+            <li><span>04</span><strong>Optimiza</strong><p>Mueve presupuesto según el KPI propio de cada rol.</p></li>
+          </ol>
+        </div>
+      </section>
+    </section>
+
+    <section class="investment section-light" id="inversion" aria-labelledby="investment-title">
+      <div class="section-heading section-heading-inline">
+        <div>
+          <p class="eyebrow eyebrow-dark">INVERSIÓN MENSUAL <span>↗</span></p>
+          <h2 id="investment-title">El lanzamiento pesa.<br>Performance crece.</h2>
+        </div>
+        <p>Haz clic en un mes para aislarlo. Cada segmento representa un canal y conserva el color en toda la experiencia.</p>
+      </div>
+      <div class="chart-shell">
+        <div class="chart-toolbar">
+          <p id="chartTitle">Distribución por medio · Plan completo</p>
+          <div class="legend" id="chartLegend"></div>
+        </div>
+        <div class="monthly-chart" id="monthlyChart" role="img" aria-label="Inversión mensual apilada por canal"></div>
+      </div>
+    </section>
+
+    <section class="channels section-dark" id="canales" aria-labelledby="channels-title">
+      <div class="section-heading section-heading-inline">
+        <div>
+          <p class="eyebrow">MEDIOS Y FORMATOS <span>↗</span></p>
+          <h2 id="channels-title">Un rol claro<br>por canal.</h2>
+        </div>
+        <p>Las tarjetas responden a los filtros activos. Abre cada una para ver formatos, KPI secundarios y la inversión mensual.</p>
+      </div>
+      <div class="channel-grid" id="channelGrid"></div>
+      <p class="empty-state" id="emptyState" hidden>No hay canales que coincidan con estos filtros.</p>
+    </section>
+
+    <section class="flow-table-section section-light" aria-labelledby="table-title">
+      <div class="section-heading section-heading-inline">
+        <div>
+          <p class="eyebrow eyebrow-dark">LECTURA COMPACTA <span>↗</span></p>
+          <h2 id="table-title">El flow,<br>sin ruido.</h2>
+        </div>
+        <p>Una fila por canal sobre el período seleccionado. La vista mantiene objetivo, inversión, KPI y resultado base juntos.</p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Canal</th><th>Rol</th><th>Objetivo</th><th>Inversión</th><th>KPI</th><th>Resultado base</th><th>Formatos</th>
+            </tr>
+          </thead>
+          <tbody id="flowTableBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="decision-strip section-dark">
+      <p class="eyebrow">REGLA DE OPTIMIZACIÓN</p>
+      <h2>Primero aprender.<br><em>Luego mover hasta 15%.</em></h2>
+      <p>La reasignación mensual debe considerar CPA FTD, tasa registro→depósito, valor depositado y recurrencia. Google permanece contingente a aprobación.</p>
+      <a class="button button-primary" href="#flow">Volver a filtros ↑</a>
+    </section>
+  </main>
+
+  <footer>
+    <span>RAZA.DO · Flow digital</span>
+    <span>RD +18 · Juego responsable</span>
+    <span>Planeación 2026–2027</span>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
