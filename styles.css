@@ -79,13 +79,14 @@ h1 em, h2 em { color: var(--yellow); font-style: normal; }
 .section-dark .section-heading > p, .section-dark .section-heading > div + p { color: var(--muted-dark); }
 
 .journey { max-width: var(--max); margin: 0 auto; display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
-.journey-card { min-height: 245px; display: flex; flex-direction: column; justify-content: space-between; padding: 28px; border: 1px solid var(--line-light); border-radius: var(--radius); background: var(--white); cursor: pointer; transition: transform .2s ease, border-color .2s ease, background .2s ease; }
+.journey-card { width: 100%; min-height: 245px; display: flex; flex-direction: column; justify-content: space-between; padding: 28px; border: 1px solid var(--line-light); border-radius: var(--radius); background: var(--white); color: var(--ink); text-align: left; appearance: none; cursor: pointer; transition: transform .2s ease, border-color .2s ease, background .2s ease; }
 .journey-card:hover, .journey-card:focus-visible { transform: translateY(-5px); border-color: var(--yellow); outline: none; }
 .journey-card.is-active { background: var(--yellow); border-color: var(--yellow); }
 .journey-number { display: flex; justify-content: space-between; color: #767676; font-size: .76rem; letter-spacing: .12em; }
-.journey-card h3 { margin: 28px 0 7px; font-size: 1.7rem; letter-spacing: -.03em; }
-.journey-card p { margin: 0; color: var(--muted-light); }
-.journey-media { margin-top: 20px; font-size: .76rem; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; }
+.journey-content { display: grid; gap: 8px; margin-top: 28px; }
+.journey-title { display: block; font-size: 1.7rem; line-height: 1.12; letter-spacing: -.03em; text-wrap: pretty; }
+.journey-description { display: block; color: var(--muted-light); text-wrap: pretty; }
+.journey-media { display: block; margin-top: 12px; font-size: .76rem; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; }
 
 .filters { max-width: var(--max); margin: 0 auto; display: grid; grid-template-columns: repeat(4,minmax(140px,1fr)) minmax(190px,1.2fr) auto; gap: 10px; padding: 14px; border: 1px solid var(--line-dark); background: #111; border-radius: 22px; position: sticky; top: 88px; z-index: 20; box-shadow: 0 20px 60px rgba(0,0,0,.28); }
 .filters label { display: grid; gap: 6px; color: #8c8c8c; font-size: .68rem; text-transform: uppercase; letter-spacing: .12em; }
@@ -174,14 +175,16 @@ h1 em, h2 em { color: var(--yellow); font-style: normal; }
 .performance-panel-heading span { color: #8d8d8d; font-size: .66rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
 .performance-panel-heading h3 { margin: 5px 0 0; font-size: clamp(1.45rem,2.2vw,2.2rem); letter-spacing: -.035em; }
 .performance-panel-heading > span { max-width: 175px; color: var(--yellow); text-align: right; }
-.conversion-funnel { min-height: 340px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 9px; padding: 30px 0 18px; }
-.funnel-level { min-height: 92px; display: grid; place-content: center; gap: 1px; padding: 12px 40px; text-align: center; clip-path: polygon(7% 0,93% 0,100% 100%,0 100%); }
+.conversion-funnel { min-height: 430px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 7px; padding: 28px 0 18px; }
+.funnel-level { min-height: 76px; display: grid; place-content: center; gap: 1px; padding: 10px 40px; text-align: center; clip-path: polygon(7% 0,93% 0,100% 100%,0 100%); }
 .funnel-level span { font-size: .66rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
-.funnel-level strong { font-size: clamp(1.7rem,3vw,2.7rem); line-height: 1; letter-spacing: -.045em; }
+.funnel-level strong { font-size: clamp(1.55rem,2.5vw,2.3rem); line-height: 1; letter-spacing: -.045em; }
 .funnel-level small { font-size: .68rem; }
-.funnel-investment { width: 100%; background: var(--yellow); color: var(--ink); }
-.funnel-registers { width: 82%; background: var(--yellow-soft); color: var(--ink); }
-.funnel-ftd { width: 64%; background: #315cff; color: var(--white); }
+.funnel-impressions { width: 100%; background: var(--yellow); color: var(--ink); }
+.funnel-reach { width: 90%; background: var(--yellow-soft); color: var(--ink); }
+.funnel-visits { width: 80%; background: #d1ff5b; color: var(--ink); }
+.funnel-registers { width: 70%; background: #55c98a; color: var(--ink); }
+.funnel-ftd { width: 58%; background: #315cff; color: var(--white); }
 .results-assumption, .trend-summary { margin: 0; padding-top: 16px; border-top: 1px solid var(--line-dark); color: #8f8f8f; font-size: .72rem; }
 .trend-legend { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 9px 13px; }
 .trend-legend span { display: inline-flex; align-items: center; gap: 6px; }
@@ -343,9 +346,11 @@ footer { display: flex; justify-content: space-between; gap: 18px; padding: 25px
   .performance-panel { min-height: 0; padding: 21px; }
   .performance-panel-heading { display: grid; }
   .performance-panel-heading > span { max-width: none; text-align: left; }
-  .funnel-level { min-height: 88px; padding-inline: 18px; }
-  .funnel-registers { width: 90%; }
-  .funnel-ftd { width: 80%; }
+  .funnel-level { min-height: 76px; padding-inline: 18px; }
+  .funnel-reach { width: 94%; }
+  .funnel-visits { width: 88%; }
+  .funnel-registers { width: 82%; }
+  .funnel-ftd { width: 76%; }
   .results-trend { min-height: 290px; overflow-x: auto; }
   .results-trend svg { min-width: 620px; }
 }

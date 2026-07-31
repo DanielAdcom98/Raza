@@ -124,6 +124,7 @@ const OBJECTIVE_VISUALS = [
   { name: "Consideración", color: "#55c98a", purpose: "Explicar y llevar tráfico" },
   { name: "Performance", color: "#315cff", purpose: "Generar FTD" }
 ];
+const FUNNEL_ASSUMPTIONS = { frequency: 3.5, reachToVisit: 0.018, visitToRegistration: 0.20 };
 const money = new Intl.NumberFormat("es-DO", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
 const integer = new Intl.NumberFormat("es-DO", { maximumFractionDigits: 0 });
 const decimal = new Intl.NumberFormat("es-DO", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
@@ -190,9 +191,9 @@ function renderJourney() {
   $("#journey").innerHTML = JOURNEY.map((item, index) => `
     <button class="journey-card" type="button" data-objective="${item.objective || "all"}" data-stage="${item.stage || "all"}">
       <span class="journey-number"><span>0${index + 1}</span><span>↗</span></span>
-      <span>
-        <h3>${item.name}</h3>
-        <p>${item.text}</p>
+      <span class="journey-content">
+        <strong class="journey-title">${item.name}</strong>
+        <span class="journey-description">${item.text}</span>
         <span class="journey-media">${item.media}</span>
       </span>
     </button>`).join("");
@@ -324,6 +325,12 @@ function formatTrendValue(value) {
   return integer.format(value);
 }
 
+function formatCompactCount(value) {
+  if (value >= 1000000) return `${(value / 1000000).toFixed(1).replace(".", ",")}M`;
+  if (value >= 10000) return `${Math.round(value / 1000)}K`;
+  return integer.format(value);
+}
+
 function renderPerformanceResults() {
   const months = visibleMonths();
   const ids = months.map(month => month.id);
@@ -334,15 +341,27 @@ function renderPerformanceResults() {
   const conversionRate = registrations ? ftd / registrations * 100 : 0;
   const cpr = registrations ? investment / registrations : 0;
   const cpa = ftd ? investment / ftd : 0;
+  const measuredImpressions = filteredChannels(ids)
+    .filter(channel => channel.costType === "CPM")
+    .reduce((sum, channel) => sum + expectedResult(channel, totalFor(channel, ids)), 0);
+  const directVisits = filteredChannels(ids)
+    .filter(channel => channel.unit === "visitas")
+    .reduce((sum, channel) => sum + expectedResult(channel, totalFor(channel, ids)), 0);
+  const visits = Math.max(registrations / FUNNEL_ASSUMPTIONS.visitToRegistration, directVisits);
+  const reach = Math.max(measuredImpressions / FUNNEL_ASSUMPTIONS.frequency, visits / FUNNEL_ASSUMPTIONS.reachToVisit);
+  const impressions = Math.max(measuredImpressions, reach * FUNNEL_ASSUMPTIONS.frequency);
+  const reachToVisit = reach ? visits / reach * 100 : 0;
 
   $("#funnelSelection").textContent = months.length === 6
     ? "Plan completo · campañas de conversión"
     : `${months.map(month => month.label).join(", ") || "Sin período"} · campañas de conversión`;
   $("#conversionFunnel").innerHTML = `
-    <div class="funnel-level funnel-investment"><span>Inversión performance</span><strong>${formatCompactMoney(investment)}</strong><small>${decimal.format(investment / totalPlan * 100)}% del plan total</small></div>
-    <div class="funnel-level funnel-registers"><span>Registros esperados</span><strong>${integer.format(registrations)}</strong><small>CPR blended ${money.format(cpr)}</small></div>
+    <div class="funnel-level funnel-impressions"><span>Impresiones modeladas</span><strong>${formatCompactCount(impressions)}</strong><small>Base de exposición de la selección</small></div>
+    <div class="funnel-level funnel-reach"><span>Alcance estimado</span><strong>${formatCompactCount(reach)}</strong><small>Frecuencia blended ${decimal.format(FUNNEL_ASSUMPTIONS.frequency)}</small></div>
+    <div class="funnel-level funnel-visits"><span>Visitas calificadas</span><strong>${formatCompactCount(visits)}</strong><small>${decimal.format(reachToVisit)}% alcance→visita</small></div>
+    <div class="funnel-level funnel-registers"><span>Registros esperados</span><strong>${integer.format(registrations)}</strong><small>${decimal.format(visits ? registrations / visits * 100 : 0)}% visita→registro · CPR ${money.format(cpr)}</small></div>
     <div class="funnel-level funnel-ftd"><span>FTD esperados</span><strong>${integer.format(ftd)}</strong><small>${decimal.format(conversionRate)}% registro→FTD · CPA ${money.format(cpa)}</small></div>`;
-  $("#conversionFunnel").setAttribute("aria-label", `${money.format(investment)} de inversión de performance, ${integer.format(registrations)} registros y ${integer.format(ftd)} FTD esperados.`);
+  $("#conversionFunnel").setAttribute("aria-label", `${integer.format(impressions)} impresiones, ${integer.format(reach)} personas alcanzadas, ${integer.format(visits)} visitas, ${integer.format(registrations)} registros y ${integer.format(ftd)} FTD esperados.`);
 
   const trend = months.map(month => {
     const monthInvestment = performanceChannels.reduce((sum, channel) => sum + (channel.budgets[month.id] || 0), 0);
