@@ -12,7 +12,7 @@ No requiere instalación ni proceso de compilación.
 ## Archivos
 
 - `index.html`: centro de documentos y punto de entrada del proyecto.
-- `flow-digital.html`: flow digital interactivo con filtros, mix por objetivo, ranking por canal y distribución mensual.
+- `flow-digital.html`: flow digital interactivo con filtros, mix por objetivo, ranking por canal, funnel de registros→FTD y tendencia mensual de resultados.
 - `styles.css`: sistema visual en Poppins, inspirado en el PDF estratégico de Raza.do.
 - `app.js`: datos, filtros, gráficos y vistas interactivas.
 - `assets/launch-energy.jpg`: imagen extraída del PDF maestro proporcionado para el proyecto.

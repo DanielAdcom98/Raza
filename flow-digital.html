@@ -20,6 +20,7 @@
       <a href="#estrategia">Estrategia</a>
       <a href="#distribucion">Distribución</a>
       <a href="#inversion">Inversión</a>
+      <a href="#resultados">Resultados</a>
       <a href="#canales">Canales</a>
     </nav>
     <span class="header-context">RD · 18+</span>
@@ -37,8 +38,8 @@
         </div>
         <dl class="hero-stats" aria-label="Resumen de inversión">
           <div><dt>Inversión neta</dt><dd>US$800K</dd></div>
-          <div><dt>Lanzamiento</dt><dd>63,25%</dd></div>
-          <div><dt>FTD base</dt><dd>4.021</dd></div>
+          <div><dt>Lanzamiento</dt><dd>56,25%</dd></div>
+          <div><dt>FTD base</dt><dd>5.693</dd></div>
         </dl>
       </div>
       <div class="hero-visual" aria-hidden="true">
@@ -174,6 +175,36 @@
         </div>
         <div class="monthly-chart" id="monthlyChart" role="img" aria-label="Inversión mensual apilada por canal"></div>
       </div>
+
+      <section class="performance-results" id="resultados" aria-labelledby="results-title">
+        <div class="results-heading">
+          <div>
+            <p class="eyebrow eyebrow-dark">FUNNEL ESPERADO <span>↗</span></p>
+            <h2 id="results-title">De la inversión<br>al primer depósito.</h2>
+          </div>
+          <p>Incorporamos registros como KPI intermedio para entender dónde se pierde eficiencia antes del FTD. Las cifras responden a los filtros activos.</p>
+        </div>
+
+        <div class="results-grid">
+          <article class="performance-panel funnel-panel">
+            <div class="performance-panel-heading">
+              <div><span>Funnel de conversión</span><h3>Registros → FTD</h3></div>
+              <span id="funnelSelection">Plan completo</span>
+            </div>
+            <div class="conversion-funnel" id="conversionFunnel" role="img" aria-label="Funnel esperado de inversión, registros y FTD"></div>
+            <p class="results-assumption">Supuestos base: Meta CPR US$13,50 / 30%; TikTok CPR US$15,00 / 25%; Google CPR US$15,05 / 35% registro→FTD.</p>
+          </article>
+
+          <article class="performance-panel trend-panel">
+            <div class="performance-panel-heading">
+              <div><span>Tendencia mensual</span><h3>Resultados esperados</h3></div>
+              <div class="trend-legend" aria-label="Leyenda"><span><i class="register-swatch"></i>Registros</span><span><i class="ftd-swatch"></i>FTD</span></div>
+            </div>
+            <div class="results-trend" id="resultsTrend" role="img" aria-label="Tendencia mensual de registros y FTD"></div>
+            <p class="trend-summary" id="trendSummary"></p>
+          </article>
+        </div>
+      </section>
     </section>
 
     <section class="channels section-dark" id="canales" aria-labelledby="channels-title">
