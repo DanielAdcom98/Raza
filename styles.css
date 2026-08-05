@@ -264,6 +264,7 @@ footer { display: flex; justify-content: space-between; gap: 18px; padding: 25px
 .document-grid { max-width: var(--max); margin: 0 auto; display: grid; grid-template-columns: repeat(12,1fr); gap: 18px; }
 .document-card { min-height: 440px; display: flex; flex-direction: column; padding: clamp(24px,3vw,42px); border: 1px solid var(--line-light); border-radius: 32px; background: var(--white); color: var(--ink); }
 .document-card-featured { grid-column: span 8; position: relative; overflow: hidden; box-shadow: 0 18px 60px rgba(0,0,0,.08); transition: transform .22s ease, box-shadow .22s ease; }
+.document-card-featured.document-card-half { grid-column: span 6; }
 .document-card-featured::after { content: "↗"; position: absolute; top: 28px; right: 30px; width: 54px; height: 54px; display: grid; place-items: center; border-radius: 50%; background: var(--yellow); font-size: 1.4rem; font-weight: 900; transition: transform .22s ease; }
 .document-card-featured:hover, .document-card-featured:focus-visible { transform: translateY(-6px); box-shadow: 0 28px 80px rgba(0,0,0,.14); outline: 3px solid rgba(255,212,0,.45); outline-offset: 3px; }
 .document-card-featured:hover::after { transform: rotate(45deg); }
@@ -315,7 +316,7 @@ footer { display: flex; justify-content: space-between; gap: 18px; padding: 25px
   .library-hero { grid-template-columns: minmax(0,1fr); min-height: auto; }
   .library-hero-copy { min-width: 0; }
   .library-count { min-height: 200px; }
-  .document-card-featured, .document-card-empty { grid-column: 1 / -1; }
+  .document-card-featured, .document-card-featured.document-card-half, .document-card-empty { grid-column: 1 / -1; }
   .library-callout { grid-template-columns: 1fr; }
   .dashboard-subheading, .distribution-grid { grid-template-columns: 1fr; }
   .dashboard-subheading { gap: 26px; }
