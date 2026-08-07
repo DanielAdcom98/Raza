@@ -49,6 +49,8 @@ img { display: block; max-width: 100%; }
 h1, h2, h3, p { text-wrap: pretty; }
 h1 { margin: 0; font-size: clamp(4rem,8.6vw,9rem); line-height: .86; letter-spacing: -.065em; font-weight: 850; }
 h1 em, h2 em { color: var(--yellow); font-style: normal; }
+.flow-page h1 { font-weight: 700; }
+.flow-page h2, .flow-page h3 { font-weight: 600; }
 .hero-lead { max-width: 670px; margin: 34px 0 0; color: #c2c2c2; font-size: clamp(1rem,1.55vw,1.35rem); }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 13px; margin-top: 36px; }
 .button { display: inline-flex; align-items: center; justify-content: center; gap: 16px; min-height: 52px; padding: 0 23px; border-radius: 999px; border: 1px solid var(--yellow); font-weight: 850; transition: transform .2s ease, background .2s ease, color .2s ease; }
