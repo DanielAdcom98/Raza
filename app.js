@@ -446,7 +446,9 @@ function renderChannels() {
 function renderTable() {
   const ids = visibleMonths().map(m => m.id);
   const channels = filteredChannels(ids).sort((a, b) => totalFor(b, ids) - totalFor(a, ids));
-  $("#flowTableBody").innerHTML = channels.map(channel => {
+  const totalInvestment = channels.reduce((sum, channel) => sum + totalFor(channel, ids), 0);
+  const optimization = totalInvestment * 0.15;
+  const channelRows = channels.map(channel => {
     const investment = totalFor(channel, ids);
     return `<tr>
       <td><span class="table-channel"><i class="table-dot" style="background:${channel.color}"></i>${escapeHtml(channel.name)}</span></td>
@@ -454,6 +456,18 @@ function renderTable() {
       <td>${escapeHtml(channel.kpi)}</td><td>${escapeHtml(resultLabel(channel, investment))}</td><td>${channel.formats.slice(0, 3).map(escapeHtml).join(" · ")}</td>
     </tr>`;
   }).join("");
+  const summaryRows = `
+    <tr class="flow-summary-row">
+      <td colspan="3"><strong>Total inversión</strong></td>
+      <td><strong>${money.format(totalInvestment)}</strong></td>
+      <td colspan="3">Suma del período y filtros seleccionados</td>
+    </tr>
+    <tr class="flow-summary-row flow-summary-optimization">
+      <td colspan="3"><strong>Total + Optimización (15%)</strong></td>
+      <td><strong>${money.format(totalInvestment + optimization)}</strong></td>
+      <td colspan="3">Base ${money.format(totalInvestment)} + ${money.format(optimization)} de optimización</td>
+    </tr>`;
+  $("#flowTableBody").innerHTML = channelRows + summaryRows;
 }
 
 function render() {
