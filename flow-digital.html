@@ -135,6 +135,13 @@
             <option value="Virtuales">Virtuales</option>
           </select>
         </label>
+        <label>Escenario de resultados
+          <select id="scenarioFilter">
+            <option value="base">Base · benchmark actual</option>
+            <option value="optimistic">Optimista · +20% resultados</option>
+            <option value="pessimistic">Pesimista · −20% resultados</option>
+          </select>
+        </label>
         <label class="search-label">Buscar canal
           <input id="searchFilter" type="search" placeholder="Meta, TikTok, Search…" autocomplete="off">
         </label>
@@ -143,8 +150,21 @@
 
       <div class="active-filter-row">
         <p id="selectionLabel" aria-live="polite">Plan completo · 6 meses · 11 canales</p>
-        <span class="live-dot">Datos recalculados</span>
+        <span class="live-dot" id="scenarioLabel">Escenario base · inversión sin cambios</span>
       </div>
+
+      <section class="scenario-switcher" aria-labelledby="scenario-title">
+        <div class="scenario-switcher-copy">
+          <p class="eyebrow">ESCENARIOS DE RESULTADOS <span>↗</span></p>
+          <h2 id="scenario-title">Misma inversión.<br><em>Tres resultados posibles.</em></h2>
+          <p>Selecciona un escenario para recalcular el funnel, las tendencias y los resultados por canal. El presupuesto total permanece en US$655,000.</p>
+        </div>
+        <div class="scenario-options" role="group" aria-label="Seleccionar escenario de resultados">
+          <button class="scenario-option is-active" type="button" data-scenario="base" aria-pressed="true"><span>01 · BASE</span><strong>Benchmark actual</strong><small>Resultados proyectados sin variación</small></button>
+          <button class="scenario-option scenario-option-positive" type="button" data-scenario="optimistic" aria-pressed="false"><span>02 · OPTIMISTA</span><strong>+20% resultados</strong><small>Misma inversión · menor costo unitario</small></button>
+          <button class="scenario-option scenario-option-negative" type="button" data-scenario="pessimistic" aria-pressed="false"><span>03 · PESIMISTA</span><strong>−20% resultados</strong><small>Misma inversión · mayor costo unitario</small></button>
+        </div>
+      </section>
 
       <div class="metric-grid" id="metricGrid" aria-live="polite"></div>
 
@@ -223,6 +243,11 @@
             <div class="performance-panel-heading">
               <div><span>Funnel de medios y conversión</span><h3>Impresiones → FTD</h3></div>
               <span id="funnelSelection">Plan completo</span>
+            </div>
+            <div class="funnel-scenario-options" role="group" aria-label="Escenario aplicado al funnel">
+              <button class="scenario-option funnel-scenario-option is-active" type="button" data-scenario="base" aria-pressed="true"><span>BASE</span><strong>Benchmark</strong></button>
+              <button class="scenario-option funnel-scenario-option" type="button" data-scenario="optimistic" aria-pressed="false"><span>OPTIMISTA</span><strong>+20%</strong></button>
+              <button class="scenario-option funnel-scenario-option" type="button" data-scenario="pessimistic" aria-pressed="false"><span>PESIMISTA</span><strong>−20%</strong></button>
             </div>
             <div class="conversion-funnel" id="conversionFunnel" role="img" aria-label="Funnel esperado de impresiones, alcance, visitas, registros y FTD"></div>
             <p class="results-assumption">Modelo direccional: frecuencia blended 3,5; hasta 1,8% alcance→visita; 20% visita→registro. Meta 30%, TikTok 25% y Google 35% registro→FTD.</p>

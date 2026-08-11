@@ -110,7 +110,12 @@ const JOURNEY = [
   { name: "Comunidad", objective: "Awareness", text: "Hacer que Raza.do sea conversación mediante contenido vivo.", media: "Twitch · creadores · picks" }
 ];
 
-const state = { month: "all", stage: "all", objective: "all", vertical: "all", search: "" };
+const SCENARIOS = {
+  base: { label: "Base", multiplier: 1, description: "benchmark actual" },
+  optimistic: { label: "Optimista", multiplier: 1.2, description: "+20% resultados" },
+  pessimistic: { label: "Pesimista", multiplier: 0.8, description: "−20% resultados" }
+};
+const state = { month: "all", stage: "all", objective: "all", vertical: "all", scenario: "base", search: "" };
 const OBJECTIVE_VISUALS = [
   { name: "Awareness", color: "#ffd400", purpose: "Instalar y amplificar" },
   { name: "Consideración", color: "#55c98a", purpose: "Explicar y llevar tráfico" },
@@ -142,12 +147,13 @@ function filteredChannels(monthIds = visibleMonths().map(m => m.id)) {
 
 function expectedResult(channel, investment) {
   if (!investment || !channel.cost) return 0;
-  return channel.costType === "CPM" ? investment / channel.cost * 1000 : investment / channel.cost;
+  const baseResult = channel.costType === "CPM" ? investment / channel.cost * 1000 : investment / channel.cost;
+  return baseResult * SCENARIOS[state.scenario].multiplier;
 }
 
 function expectedRegistrations(channel, investment) {
   if (channel.objective !== "Performance" || !investment || !channel.registrationCost) return 0;
-  return investment / channel.registrationCost;
+  return investment / channel.registrationCost * SCENARIOS[state.scenario].multiplier;
 }
 
 function resultLabel(channel, investment) {
@@ -163,18 +169,27 @@ function formatCompactMoney(value) {
   return `US$${integer.format(value / 1000)}K`;
 }
 
+function formatBenchmarkCost(value) {
+  return `US$${value < 1 ? value.toFixed(3) : decimal.format(value)}`;
+}
+
 function initControls() {
   const monthFilter = $("#monthFilter");
   MONTHS.forEach(month => monthFilter.insertAdjacentHTML("beforeend", `<option value="${month.id}">${month.label}</option>`));
-  ["month", "stage", "objective", "vertical"].forEach(key => {
+  ["month", "stage", "objective", "vertical", "scenario"].forEach(key => {
     $(`#${key}Filter`).addEventListener("change", event => { state[key] = event.target.value; render(); });
   });
+  document.querySelectorAll(".scenario-option").forEach(button => button.addEventListener("click", () => {
+    state.scenario = button.dataset.scenario;
+    $("#scenarioFilter").value = state.scenario;
+    render();
+  }));
   $("#searchFilter").addEventListener("input", event => { state.search = event.target.value; render(); });
   $("#resetFilters").addEventListener("click", resetFilters);
 }
 
 function resetFilters() {
-  Object.assign(state, { month: "all", stage: "all", objective: "all", vertical: "all", search: "" });
+  Object.assign(state, { month: "all", stage: "all", objective: "all", vertical: "all", scenario: "base", search: "" });
   $("#filters").reset();
   render();
 }
@@ -223,6 +238,13 @@ function renderMetrics() {
   $("#metricGrid").innerHTML = cards.map(card => `<article class="metric-card ${card.accent ? "accent" : ""}"><span class="metric-label">${card.label}</span><div class="metric-value">${card.value}</div><p class="metric-foot">${card.foot}</p></article>`).join("");
   const monthText = months.length === 6 ? "6 meses" : months.map(m => m.label).join(", ") || "Sin meses";
   $("#selectionLabel").textContent = `${monthText} · ${channels.length} canales · ${state.objective === "all" ? "Todos los objetivos" : state.objective}`;
+  const scenario = SCENARIOS[state.scenario];
+  $("#scenarioLabel").textContent = `Escenario ${scenario.label.toLocaleLowerCase("es")} · ${scenario.description} · inversión sin cambios`;
+  document.querySelectorAll(".scenario-option").forEach(button => {
+    const active = button.dataset.scenario === state.scenario;
+    button.classList.toggle("is-active", active);
+    button.setAttribute("aria-pressed", active);
+  });
 }
 
 function renderChart() {
@@ -344,9 +366,8 @@ function renderPerformanceResults() {
   const impressions = Math.max(measuredImpressions, reach * FUNNEL_ASSUMPTIONS.frequency);
   const reachToVisit = reach ? visits / reach * 100 : 0;
 
-  $("#funnelSelection").textContent = months.length === 6
-    ? "Plan completo · campañas de conversión"
-    : `${months.map(month => month.label).join(", ") || "Sin período"} · campañas de conversión`;
+  const funnelPeriod = months.length === 6 ? "Plan completo" : months.map(month => month.label).join(", ") || "Sin período";
+  $("#funnelSelection").textContent = `${funnelPeriod} · ${SCENARIOS[state.scenario].label}`;
   $("#conversionFunnel").innerHTML = `
     <div class="funnel-level funnel-impressions"><span>Impresiones modeladas</span><strong>${formatCompactCount(impressions)}</strong><small>Base de exposición de la selección</small></div>
     <div class="funnel-level funnel-reach"><span>Alcance estimado</span><strong>${formatCompactCount(reach)}</strong><small>Frecuencia blended ${decimal.format(FUNNEL_ASSUMPTIONS.frequency)}</small></div>
@@ -428,7 +449,7 @@ function renderChannels() {
         <h4>Formatos</h4><div class="format-list">${channel.formats.map(format => `<span class="format-chip">${escapeHtml(format)}</span>`).join("")}</div>
         <h4>Inversión mensual</h4><div class="mini-months">${mini}</div>
         <h4>KPI secundario</h4><p>${escapeHtml(channel.secondary)}</p>
-        <h4>Benchmark</h4><p>${escapeHtml(channel.costType)} · US$${channel.cost < 1 ? channel.cost.toFixed(3) : decimal.format(channel.cost)}</p>
+        <h4>Benchmark del escenario</h4><p>${escapeHtml(channel.costType)} · ${formatBenchmarkCost(channel.cost / SCENARIOS[state.scenario].multiplier)} <small>(${escapeHtml(SCENARIOS[state.scenario].label)})</small></p>
         <h4>Nota</h4><p>${escapeHtml(channel.note)}</p>
       </div>
     </details>`;

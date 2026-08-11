@@ -116,6 +116,19 @@ h1 em, h2 em { color: var(--yellow); font-style: normal; }
 .reset-button { align-self: end; height: 44px; padding: 0 16px; border: 1px solid var(--yellow); border-radius: 11px; background: transparent; color: var(--yellow); cursor: pointer; font-weight: 800; }
 .active-filter-row { max-width: var(--max); margin: 22px auto 18px; display: flex; justify-content: space-between; gap: 20px; color: #bcbcbc; }
 .active-filter-row p { margin: 0; }
+.scenario-switcher { max-width:var(--max); margin:0 auto 22px; padding:28px; display:grid; grid-template-columns:minmax(250px,.75fr) minmax(520px,1.6fr); gap:30px; align-items:center; border:2px solid var(--yellow); border-radius:22px; background:#111; box-shadow:0 18px 50px rgba(0,0,0,.22); }
+.scenario-switcher-copy .eyebrow { margin:0 0 10px; color:var(--yellow); }
+.scenario-switcher-copy h2 { margin:0; color:var(--white); font-size:clamp(1.65rem,2.5vw,2.55rem); line-height:.98; }
+.scenario-switcher-copy h2 em { color:var(--yellow); font-style:normal; }
+.scenario-switcher-copy > p:last-child { margin:16px 0 0; color:#bcbcbc; font-size:.86rem; line-height:1.55; }
+.scenario-options { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+.scenario-option { min-height:154px; padding:18px; display:flex; flex-direction:column; align-items:flex-start; text-align:left; border:1px solid #383838; border-radius:15px; background:#202020; color:var(--white); cursor:pointer; transition:transform .18s ease,border-color .18s ease,background .18s ease; }
+.scenario-option:hover { transform:translateY(-3px); border-color:var(--yellow); }
+.scenario-option span { color:#aaa; font-size:.67rem; font-weight:900; letter-spacing:.1em; }
+.scenario-option strong { margin:18px 0 8px; font-size:1.08rem; line-height:1.05; }
+.scenario-option small { color:#aaa; line-height:1.35; }
+.scenario-option.is-active { background:var(--yellow); border-color:var(--yellow); color:var(--ink); box-shadow:0 0 0 3px rgba(255,212,0,.2); }
+.scenario-option.is-active span,.scenario-option.is-active small { color:#3c3500; }
 .live-dot { display: inline-flex; align-items: center; gap: 8px; color: var(--yellow); font-size: .8rem; }
 .live-dot::before { content: ""; width: 7px; height: 7px; background: var(--yellow); border-radius: 50%; box-shadow: 0 0 0 5px rgba(255,212,0,.12); }
 .metric-grid { max-width: var(--max); margin: 0 auto; display: grid; grid-template-columns: repeat(5,1fr); gap: 12px; }
@@ -197,6 +210,10 @@ h1 em, h2 em { color: var(--yellow); font-style: normal; }
 .performance-panel-heading h3 { margin: 5px 0 0; font-size: clamp(1.45rem,2.2vw,2.2rem); letter-spacing: -.035em; }
 .performance-panel-heading > span { max-width: 175px; color: var(--yellow); text-align: right; }
 .conversion-funnel { min-height: 430px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 7px; padding: 28px 0 18px; }
+.funnel-scenario-options { display:grid; grid-template-columns:repeat(3,1fr); gap:7px; margin-top:18px; }
+.funnel-scenario-option { min-height:72px; padding:11px 13px; border-radius:11px; }
+.funnel-scenario-option span { font-size:.58rem; }
+.funnel-scenario-option strong { margin:8px 0 0; font-size:.9rem; }
 .funnel-level { min-height: 76px; display: grid; place-content: center; gap: 1px; padding: 10px 40px; text-align: center; clip-path: polygon(7% 0,93% 0,100% 100%,0 100%); }
 .funnel-level span { font-size: .66rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
 .funnel-level strong { font-size: clamp(1.55rem,2.5vw,2.3rem); line-height: 1; letter-spacing: -.045em; }
@@ -315,6 +332,7 @@ footer { display: flex; justify-content: space-between; gap: 18px; padding: 25px
 
 @media (max-width: 1180px) {
   .filters { grid-template-columns: repeat(3,1fr); position: static; }
+  .scenario-switcher { grid-template-columns:1fr; }
   .metric-grid { grid-template-columns: repeat(2,1fr); }
   .channel-grid { grid-template-columns: repeat(2,1fr); }
   .hero { grid-template-columns: 1fr .65fr; }
@@ -339,6 +357,8 @@ footer { display: flex; justify-content: space-between; gap: 18px; padding: 25px
   .section-heading, .section-heading-wide, .section-heading-inline { grid-template-columns: 1fr; gap: 28px; }
   .journey { grid-template-columns: 1fr 1fr; }
   .filters { grid-template-columns: 1fr 1fr; }
+  .scenario-options { grid-template-columns:1fr; }
+  .scenario-option { min-height:118px; }
   .channel-grid { grid-template-columns: 1fr; }
   .chart-toolbar { display: grid; }
   .legend { justify-content: flex-start; }

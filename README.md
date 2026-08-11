@@ -21,4 +21,4 @@ No requiere instalación ni proceso de compilación.
 
 ## Fuente de cifras
 
-Flow digital neto de US$800K, septiembre 2026–febrero 2027, alineado con el Excel `FLOWCHART RAZA (PHD-THE BRAND) (1).xlsx`.
+Flow digital neto de US$655K, septiembre 2026–febrero 2027, distribuido en 11 canales. Los escenarios Base, Optimista y Pesimista mantienen la inversión y modelan una variación de ±20% en resultados.
