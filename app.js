@@ -60,14 +60,6 @@ const CHANNELS = [
     budgets: { sep: 24000, oct: 20000, nov: 7000, dic: 3000, ene: 2000, feb: 4000 }
   },
   {
-    id: "dooh", name: "Circuito DOOH", initials: "DO", role: "Growth / Support", objective: "Awareness",
-    action: "Reconocer la marca y conectar presencia física-digital", verticals: ["Marca", "Deportivas", "Lotería"],
-    kpi: "Alcance y frecuencia del circuito", secondary: "Cobertura por zona, lift de búsqueda y visitas asistidas",
-    formats: ["DOOH programático", "Circuitos premium", "Proximidad a bancas"], costType: "CPM", cost: 47, unit: "impresiones OOH",
-    note: "Concentrado en septiembre–octubre; alcance final sujeto al plan del proveedor.", color: "#ffd400",
-    budgets: { sep: 75000, oct: 70000, nov: 0, dic: 0, ene: 0, feb: 0 }
-  },
-  {
     id: "dco-display", name: "DCO RealTime Display", initials: "DD", role: "Support", objective: "Consideración",
     action: "Visitar una landing relevante según el contexto", verticals: ["Deportivas", "Lotería", "Casino"],
     kpi: "Impresiones visibles", secondary: "Viewability, CTR, visitas calificadas y conversión asistida",
@@ -110,7 +102,7 @@ const CHANNELS = [
 ];
 
 const JOURNEY = [
-  { name: "Expectativa", objective: "Awareness", text: "Hacer que la marca se sienta como acontecimiento cultural.", media: "TopView · DOOH · teasers" },
+  { name: "Expectativa", objective: "Awareness", text: "Hacer que la marca se sienta como acontecimiento cultural.", media: "TopView · video · teasers" },
   { name: "Lanzamiento", stage: "Lanzamiento", text: "Presentar quién es Raza.do, qué ofrece y por qué tiene respaldo local.", media: "Video · alcance · landings" },
   { name: "Consideración", objective: "Consideración", text: "Reducir dudas sobre registro, depósito, retiro, bonos y categorías.", media: "Tutoriales · Meta · YouTube" },
   { name: "Conversión", objective: "Performance", text: "Llevar a registro, primer depósito y primera jugada con rutas claras.", media: "Meta · TikTok · Search" },
