@@ -197,7 +197,8 @@ h1 em, h2 em { color: var(--yellow); font-style: normal; }
 .bar-segment { width: 100%; min-height: 1px; }
 .bar-label { padding-bottom: 10px; text-align: center; }
 .bar-label strong { display: block; font-size: .9rem; }
-.bar-label span { color: #8e8e8e; font-size: .72rem; }
+.bar-label span { display: block; color: #8e8e8e; font-size: .72rem; }
+.bar-label .bar-range { margin-top: 2px; color: #6d6d6d; font-size: .66rem; letter-spacing: .04em; }
 
 .performance-results { max-width: var(--max); margin: 100px auto 0; padding-top: 92px; border-top: 1px solid var(--line-light); scroll-margin-top: 92px; }
 .results-heading { display: grid; grid-template-columns: 1fr .65fr; gap: 70px; align-items: end; margin-bottom: 44px; }

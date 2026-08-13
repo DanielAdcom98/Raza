@@ -21,4 +21,6 @@ No requiere instalación ni proceso de compilación.
 
 ## Fuente de cifras
 
-Flow digital neto de US$655K, septiembre 2026–febrero 2027, distribuido en 11 canales. Los escenarios Base, Optimista y Pesimista mantienen la inversión y modelan una variación de ±20% en resultados.
+Flow digital neto de US$655K, del 25 de septiembre de 2026 al 28 de febrero de 2027, distribuido en 11 canales. Los escenarios Base, Optimista y Pesimista mantienen la inversión y modelan una variación de ±20% en resultados.
+
+Calendario: expectativa del 25 al 30 de septiembre (teaser de 6 días, solo awareness), lanzamiento el 1 de octubre (mes completo, se encienden las campañas de conversión) y mantenimiento de noviembre a febrero. La ventana expectativa + lanzamiento concentra US$305K (46,56% del plan).
